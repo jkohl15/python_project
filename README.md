@@ -10,3 +10,4 @@ This project brings together various classes and a user interface to create a fu
 - The third and final layer of the user interface allows for editing selected teams.  Team members can be added added, deleted, and updated in selected teams.
 
 The Curling League Manager utilizes a few external packages.  Yagmail and keyring are used to support active email functionality to participants in the league.  This email functionality is not a part of the user interface.
+ 
