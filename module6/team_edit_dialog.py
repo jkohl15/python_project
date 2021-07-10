@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import QDialog, QMessageBox
 from module6.league_database import LeagueDatabase
 from module6.team import Team
 from module6.team_member import TeamMember
+from module6.custom_exceptions import DuplicateEmail
 
 Ui_MainWindow, QtBaseWindow = uic.loadUiType("team_edit_dialog.ui")
 
@@ -40,7 +41,10 @@ class TeamEditDialog(QtBaseWindow, Ui_MainWindow):
                 if self.league_in == l:
                     for tm in l.teams:
                         if tm == self.team_in:
-                            tm.add_member(TeamMember(LeagueDatabase.instance().next_oid(), name_string_in, email_string_in))
+                            try:
+                                tm.add_member(TeamMember(LeagueDatabase.instance().next_oid(), name_string_in, email_string_in))
+                            except DuplicateEmail:
+                                return self.warn("Add Error", "Attempted to add a team member with a duplicate email")
         self.update_ui()
 
     def update_ui(self):
@@ -120,8 +124,13 @@ class TeamEditDialog(QtBaseWindow, Ui_MainWindow):
                         if self.team_in == team:
                             for i, tm in enumerate(team.members):
                                 if i == row:
-                                    tm.name = name_string_in
-                                    tm.email = email_string_in
+                                    email_lowercase_string_in = email_string_in.lower()
+                                    existing_email_list = [t.email.lower() for t in team.members]
+                                    if email_lowercase_string_in not in existing_email_list:
+                                        tm.name = name_string_in
+                                        tm.email = email_string_in
+                                    else:
+                                        self.warn("Duplicate Update", "Attempted to update with a duplicate email")
         self.update_ui()
 
 
