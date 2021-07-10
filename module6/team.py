@@ -50,7 +50,7 @@ class Team(IdentifiedObject):
             for tm in self.members:
                 if tm.oid == member.oid:
                     raise DuplicateOid(member.oid)
-                elif tm.email == member.email:
+                elif tm.email.lower() == member.email.lower():
                     raise DuplicateEmail(member.email)
             self.members.append(member)
 

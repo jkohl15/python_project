@@ -129,6 +129,9 @@ class TeamEditDialog(QtBaseWindow, Ui_MainWindow):
                                     if email_lowercase_string_in not in existing_email_list:
                                         tm.name = name_string_in
                                         tm.email = email_string_in
+                                    elif tm.email.lower() == email_lowercase_string_in:
+                                        tm.name = name_string_in
+                                        tm.email = email_string_in
                                     else:
                                         self.warn("Duplicate Update", "Attempted to update with a duplicate email")
         self.update_ui()
