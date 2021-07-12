@@ -7,7 +7,7 @@ This project brings together various classes and a user interface to create a fu
 - The league database is used to keep track of all leagues being managed.  A few features of this database include the ability to import leagues, export leagues, save leagues, and load previously saved leagues.  
 - The user interface includes three levels of dialog boxes.  The top level of the user interface allows leagues to be saved, loaded, added, imported, deleted, and edited.
 - The second level of the user interface allows for editing selected leagues.  Teams in the selected league can be added, deleted and edited.  Also, the selected league can be exported as a CSV file.
-- The third and final layer of the user interface allows for editing selected teams.  Team members can be added added, deleted, and updated in selected teams.
+- The third and final layer of the user interface allows for editing selected teams.  Team members can be added, deleted, and updated in selected teams. 
 
 The Curling League Manager utilizes a few external packages.  Yagmail and keyring are used to support active email functionality to participants in the league.  This email functionality is not a part of the user interface.
  
